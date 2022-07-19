@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Email-Sender</title>
+	<style type="text/css">
+		.header
+		{
+			height: 100px;
+			background-color: black;
+			border: 1px solid black;
+		}
+		h1
+		{
+			color: white;
+		}
+		.footer
+		{
+			height: 70px;
+			background-color: black;
+			border:1px solid black;
+		}
+		.content
+		{
+			height: 420px;
+			border:1px solid black;
+		}
+		input[type="text"]
+		{
+			width: 300px;
+			height: 30px;
+			border-radius: 10px;
+		}
+		textarea
+		{
+			width: 300px;
+			height: 100px;
+			border-radius: 10px;
+		}
+		input[type=submit]
+		{
+			width: 100px;
+			height: 40px;
+			border-radius: 15px;
+			background-color: green;
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<h1 align="center">Email Sender Web App</h1>
+	</div>
+
+	<div class="content">
+		
+		<br/><br/><br/>
+		{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+		{% endif %}
+		<form method="post" action="/customer/email_info/">
+			{% csrf_token %}
+		<table align="center"  cellspacing="0" cellpadding="10">
+			<tr>
+				<td>To</td>
+				<td><input type="text" name="to"></td>
+			</tr>
+			<tr>
+				<td>Subject</td>
+				<td><input type="text" name="subject"></td>
+			</tr>
+			<tr>
+				<td>Message</td>
+				<td>
+					<textarea name="message">
+						
+					</textarea>
+				</td>
+			</tr>
+			<tr>
+				
+				<td colspan="2" align="center"><input type="submit" name="submit" value="Send"></td>
+			</tr>
+		</table>
+	</form>
+	</div>
+
+	<div class="footer">
+		<h1 align="center">@copyright</h1>
+	</div>
+</body>
+</html>
